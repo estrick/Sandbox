@@ -24,7 +24,7 @@ public class MapGenerator {
         brickHeight = 150 / row;
     }
 
-    // Map building function (draw bricks)
+    // Map building method (draw bricks)
     public void draw(Graphics2D g) {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
@@ -39,5 +39,10 @@ public class MapGenerator {
             }
         }
     }
+    // Method to set value of brick (0 or 1) denoting if brick is drawn or not
+    public void setBrickValue(int value, int row, int col) {
+        map[row][col] = value;
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.BrickBreaker;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,6 +40,23 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         timer.start();
     }
 
+    // Declare starting values for game restarts
+    public void startingValues() {
+        play = true;
+        ballPosX = 120;
+        ballPosY = 350;
+        ballXDir = -1;
+        ballYDir = -2;
+        playerX = 310;
+        score = 0;
+        totalBricks = 21;
+        map = new MapGenerator(3, 7);
+    }
+    public void endGameValues() {
+        play = false;
+        ballXDir = 0;
+        ballYDir = 0;
+    }
     // Draw shapes method, takes graphics object
     public void paint(Graphics g) {
         // Create background
@@ -53,6 +72,11 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.fillRect(0, 0, 692, 3);
         g.fillRect(0, 0, 3, 592);
 
+        // Display score
+        g.setColor(Color.white);
+        g.setFont(new Font("Open Sans", Font.BOLD, 25));
+        g.drawString("" + score, 592, 30);
+
         // Create paddle
         g.setColor(Color.green);
         g.fillRect(playerX, 550, 100, 8); // X pos is player X variable
@@ -60,6 +84,31 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         // Create ball
         g.setColor(Color.yellow);
         g.fillOval(ballPosX, ballPosY, 20, 20); // X & Y pos is ball X,Y pos
+
+        // Check if there are any bricks left, if none, game is won.
+        if(totalBricks <= 0) {
+            endGameValues();
+            // Display game complete message
+            g.setColor(Color.green);
+            g.setFont(new Font("Open Sans", Font.BOLD, 30));
+            g.drawString("Onya Mate, Score: " + score, 180, 320);
+            // Restart message
+            g.setFont(new Font("Open Sans", Font.BOLD, 20));
+            g.drawString("Press Enter to restart ", 230, 350);
+        }
+
+        // Check if ball has gone out of bounds
+        if(ballPosY > 570) {
+            // Play is false, ball Dir is stopped
+            endGameValues();
+            // Display game over message
+            g.setColor(Color.red);
+            g.setFont(new Font("Open Sans", Font.BOLD, 30));
+            g.drawString("Sorry m8, Score: " + score, 180, 320);
+            // Restart message
+            g.setFont(new Font("Open Sans", Font.BOLD, 20));
+            g.drawString("Press Enter to restart ", 230, 350);
+        }
 
         g.dispose();
     }
@@ -79,6 +128,39 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             // Detect intersection between ball and paddle
             if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))) {
                 ballYDir = -ballYDir; // Reverse direction after rebound
+            }
+
+            // Detect collison with bricks, map(obj).map(array)
+           A: for (int i = 0; i < map.map.length; i++){
+                for(int j = 0; j < map.map[0].length; j++) {
+                    if(map.map[i][j] > 0) {
+                        // If brick exists detect intersection
+                        int brickX = j*map.brickWidth + 80;
+                        int brickY = i*map.brickHeight + 50;
+                        int brickWidth = map.brickWidth;
+                        int brickHeight = map.brickHeight;
+                        // Create rectangle around brick & ball for collision detection
+                        Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballPosX, ballPosY, 20, 20);
+                        Rectangle brickRect = rect;
+                        // If ball intersects, set brick value to 0 (broken)
+                        if(ballRect.intersects(brickRect)) {
+                            map.setBrickValue(0, i, j);
+                            totalBricks--;
+                            score += 5;
+
+                            // Below enables ball to rebound from collisions with bricks, instead of moving through
+                            // and hitting more bricks
+                            if((ballPosX + 19) <= brickRect.x || (ballPosX + 1) >= (brickRect.x + brickRect.width)) {
+                                ballXDir = - ballXDir;
+                            } else {
+                                ballYDir = - ballYDir;
+                            }
+                            // Escape both loops with break label
+                            break A;
+                        }
+                    }
+                }
             }
 
             // Detect if the ball if touching the top/left/right
@@ -119,6 +201,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 playerX = LEFT_LIMIT;
             } else {
                 moveLeft();
+            }
+        }
+        if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+            // If play is false, restart it using 'startingValues()' method, then repaint
+            if(!play) {
+                startingValues();
+                repaint();
             }
         }
     }
