@@ -18,9 +18,9 @@ public class Main {
         jframe.setBounds(10, 10, 700, 600);
         jframe.setTitle("Brick Breaker");
         jframe.setResizable(false);
-        jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(gameplay);
+        jframe.setVisible(true);
     }
 
 }
