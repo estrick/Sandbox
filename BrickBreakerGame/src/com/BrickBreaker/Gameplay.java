@@ -22,9 +22,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int ballYDir = -2; // start ball y direction
     private final int LEFT_LIMIT = 10;
     private final int RIGHT_LIMIT = 600;
+    private MapGenerator map;
+    // Maybe replace new rectangles in ball movement function with below
+    //Rectangle ballRect = new Rectangle(ballPosX, ballPosY, 20, 20);
+    //Rectangle paddleRect = new Rectangle(playerX, 550, 100, 8);
 
     // Constructor
     public Gameplay() {
+        map = new MapGenerator(3, 7);
         addKeyListener(this); // Add key listener in order to work with KL
         setFocusable(true); //
         setFocusTraversalKeysEnabled(false);
@@ -38,6 +43,9 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         // Create background
         g.setColor(Color.black);
         g.fillRect(1, 1, 692, 592); // (x, y, width, height)
+
+        // Call draw function in map generator to draw the bricks/map
+        map.draw((Graphics2D)g); // Cast to 2D graphics
 
         // Create borders
         g.setColor(Color.yellow);
@@ -55,18 +63,44 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
         g.dispose();
     }
-    public void moveRight() {
+    // Paddle movement
+    private void moveRight() {
         play = true; // Ensure we are playing
         playerX += 20; // Move right
     }
-    public void moveLeft() {
+    private void moveLeft() {
         play = true; // Ensure we are playing
         playerX -= 20; // Move left
+    }
+    // Ball movement
+    private void ballMovement() {
+        if(play) { // If we have pressed left/right
+
+            // Detect intersection between ball and paddle
+            if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))) {
+                ballYDir = -ballYDir; // Reverse direction after rebound
+            }
+
+            // Detect if the ball if touching the top/left/right
+            ballPosX += ballXDir; // Move the ball in X
+            ballPosY += ballYDir; // Move the ball in y
+            if (ballPosX < 0) { // Left boundary
+                ballXDir = -ballXDir; // Reverse direction if hitting left
+            }
+            if (ballPosY < 0) { // Top boundary
+                ballYDir = -ballYDir; // Reverse direction if hitting top
+            }
+            if (ballPosX > 670) { // Right boundary
+                ballXDir = -ballXDir; // Reverse direction if hitting right
+            }
+        }
     }
 
     // Abstract ActionListener Method
     public void actionPerformed(ActionEvent e) {
-
+        timer.start();
+        ballMovement(); // Move the ball
+        repaint(); // Redraw everything to show movements of paddle
     }
     // Abstract KeyListener Method
     public void keyPressed(KeyEvent e) {
