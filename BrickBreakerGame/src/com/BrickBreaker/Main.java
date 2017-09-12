@@ -11,7 +11,7 @@ public class Main {
 
 
     private static void createJFrame() {
-        // Create JFrame (Main Frame with minimize/close buttons
+        // Create JFrame (Main Frame with minimize/close buttons)
         JFrame jframe = new JFrame();
         Gameplay gameplay = new Gameplay();
         // Set properties for JFrame

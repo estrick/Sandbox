@@ -1,7 +1,5 @@
 package com.BrickBreaker;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
-
 
     private boolean play = false; // play var is false: Game shouldn't play by itself
     private int score = 0; // Starting score should be 0
