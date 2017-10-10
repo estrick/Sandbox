@@ -2,7 +2,7 @@ package com.BrickBreaker;
 
 import javax.swing.*;
 
-public class Main {
+public class Main extends Thread {
 
     public static void main(String[] args) {
         // Create the JFrame

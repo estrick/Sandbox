@@ -1,5 +1,8 @@
 package com.BrickBreaker;
 
+import BrickBreaker_Network.GameClient;
+import BrickBreaker_Network.GameServer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,9 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Gameplay extends JPanel implements KeyListener, ActionListener {
+public class Gameplay extends JPanel implements KeyListener, ActionListener, Runnable {
 
-    private boolean play = false; // play var is false: Game shouldn't play by itself
+    private boolean running = false; // play var is false: Game shouldn't play by itself
     private int score = 0; // Starting score should be 0
     private int totalBricks = 21; // Number of bricks to be broken in game, can be changed
     private Timer timer; // Timer class for setting the time of the ball, determining ball speed
@@ -22,6 +25,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private final int LEFT_LIMIT = 10;
     private final int RIGHT_LIMIT = 600;
     private MapGenerator map;
+
+    private BrickBreaker_Network.GameClient socketClient;
+    private BrickBreaker_Network.GameServer socketServer;
+
     // Maybe replace new rectangles in ball movement function with below
     //Rectangle ballRect = new Rectangle(ballPosX, ballPosY, 20, 20);
     //Rectangle paddleRect = new Rectangle(playerX, 550, 100, 8);
@@ -35,11 +42,21 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         // Need java.swing.Timer for below
         timer = new Timer(delay, this); // Timer object, speed = delay, context = this
         timer.start();
+
+        new Thread(this).start();
+        if(JOptionPane.showConfirmDialog(this, "Do you want to run the server") == 0) {
+            socketServer = new GameServer(this);
+            socketServer.start();
+        }
+        socketClient = new GameClient(this, "localhost");
+        socketClient.start();
+        socketClient.sendData("ping".getBytes());
+
     }
 
     // Declare starting values for game restarts
-    public void startingValues() {
-        play = true;
+    public void start() {
+        running = true;
         ballPosX = 120;
         ballPosY = 350;
         ballXDir = -1;
@@ -50,12 +67,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         map = new MapGenerator(3, 7);
     }
     public void endGameValues() {
-        play = false;
+        running = false;
         ballXDir = 0;
         ballYDir = 0;
     }
     // Draw shapes method, takes graphics object
     public void paint(Graphics g) {
+
         // Create background
         g.setColor(Color.black);
         g.fillRect(1, 1, 692, 592); // (x, y, width, height)
@@ -111,16 +129,16 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     }
     // Paddle movement
     private void moveRight() {
-        play = true; // Ensure we are playing
+        running = true; // Ensure we are playing
         playerX += 20; // Move right
     }
     private void moveLeft() {
-        play = true; // Ensure we are playing
+        running = true; // Ensure we are playing
         playerX -= 20; // Move left
     }
     // Ball movement
-    private void ballMovement() {
-        if(play) { // If we have pressed left/right
+    public void run() {
+        if(running) { // If we have pressed left/right
 
             // Detect intersection between ball and paddle
             if(new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))) {
@@ -178,7 +196,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     // Abstract ActionListener Method
     public void actionPerformed(ActionEvent e) {
         timer.start();
-        ballMovement(); // Move the ball
+        run(); // Move the ball
         repaint(); // Redraw everything to show movements of paddle
     }
     // Abstract KeyListener Method
@@ -201,9 +219,9 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-            // If play is false, restart it using 'startingValues()' method, then repaint
-            if(!play) {
-                startingValues();
+            // If play is false, restart it using 'start()' method, then repaint
+            if(!running) {
+                start();
                 repaint();
             }
         }
