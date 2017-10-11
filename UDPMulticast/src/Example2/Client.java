@@ -23,7 +23,7 @@ public class Client {
             byte[] msgBuf = new byte[1024];
             DatagramPacket rcvPacket = new DatagramPacket(msgBuf, msgBuf.length);
             socket.receive(rcvPacket);
-            String resultString = new String(msgBuf);
+            String resultString = new String(msgBuf).trim();
             if (resultString.equals("END")) {
                 break;
             }
