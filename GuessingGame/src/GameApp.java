@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.SynchronousQueue;
-
 public class GameApp {
 
     public static void main(String[] args) {

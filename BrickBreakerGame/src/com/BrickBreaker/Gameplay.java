@@ -42,16 +42,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener, Run
         // Need java.swing.Timer for below
         timer = new Timer(delay, this); // Timer object, speed = delay, context = this
         timer.start();
-
-        new Thread(this).start();
-        if(JOptionPane.showConfirmDialog(this, "Do you want to run the server") == 0) {
-            socketServer = new GameServer(this);
-            socketServer.start();
-        }
-        socketClient = new GameClient(this, "localhost");
-        socketClient.start();
-        socketClient.sendData("ping".getBytes());
-
     }
 
     // Declare starting values for game restarts
