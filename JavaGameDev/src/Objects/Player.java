@@ -76,7 +76,7 @@ public class Player extends GlobalPosition {
     }
     public void draw(Graphics2D g2d) {
         // Create Player LightCycle
-       g2d.setColor(Color.blue);
+        g2d.setColor(Color.blue);
         g2d.fillRect(x, y, 12, 35); // X pos is player X variable
     }
     public Rectangle getBounds() {

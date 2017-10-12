@@ -135,8 +135,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener, Run
                 ballYDir = -ballYDir; // Reverse direction after rebound
             }
 
-            // Detect collison with bricks, map(obj).map(array)
-           A: for (int i = 0; i < map.map.length; i++){
+            // Detect collision with bricks, map(obj).map(array)
+            A: for (int i = 0; i < map.map.length; i++){
                 for(int j = 0; j < map.map[0].length; j++) {
                     if(map.map[i][j] > 0) {
                         // If brick exists detect intersection

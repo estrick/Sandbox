@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba047506-623a-48f5-891e-c07f00135e01" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../GuessingGame/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../JavaGameDev/src/Input/InputHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BrickBreakerGame/com/BrickBreaker/Gameplay.class" afterPath="$PROJECT_DIR$/out/production/BrickBreakerGame/com/BrickBreaker/Gameplay.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BrickBreakerGame/com/BrickBreaker/Main.class" afterPath="$PROJECT_DIR$/out/production/BrickBreakerGame/com/BrickBreaker/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GuessingGame/out/test/GuessingGame/TestGuessingGame.class" afterPath="$PROJECT_DIR$/../GuessingGame/out/test/GuessingGame/TestGuessingGame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java" afterPath="$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/BrickBreaker/Main.java" afterPath="$PROJECT_DIR$/src/com/BrickBreaker/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GuessingGame/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../GuessingGame/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GuessingGame/src/GameApp.java" afterPath="$PROJECT_DIR$/../GuessingGame/src/GameApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaGameDev/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../JavaGameDev/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaGameDev/src/Objects/Player.java" afterPath="$PROJECT_DIR$/../JavaGameDev/src/Objects/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +30,21 @@
       <file leaf-file-name="Gameplay.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="147" column="49" lean-forward="false" selection-start-line="147" selection-start-column="49" selection-end-line="147" selection-end-column="49" />
+            <state relative-caret-position="260">
+              <caret line="186" column="25" lean-forward="false" selection-start-line="186" selection-start-column="25" selection-end-line="186" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapGenerator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/MapGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,8 +52,8 @@
       <file leaf-file-name="GameServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BrickBreaker_Network/GameServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+            <state relative-caret-position="546">
+              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BrickBreaker_Network/GameClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="304">
+              <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,8 +100,8 @@
         <option value="$PROJECT_DIR$/src/BrickBreaker/GameServer.java" />
         <option value="$PROJECT_DIR$/src/BrickBreaker_Network/GameServer.java" />
         <option value="$PROJECT_DIR$/src/BrickBreaker_Network/GameClient.java" />
-        <option value="$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java" />
         <option value="$PROJECT_DIR$/src/com/BrickBreaker/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java" />
       </list>
     </option>
   </component>
@@ -107,9 +111,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1045" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="1017" />
+    <option name="width" value="910" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -244,15 +248,15 @@
       <workItem from="1505275766597" duration="41000" />
       <workItem from="1507717195319" duration="1052000" />
       <workItem from="1507720223078" duration="631000" />
-      <workItem from="1507775614325" duration="3388000" />
+      <workItem from="1507775614325" duration="5532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26422000" />
+    <option name="totallyTimeSpent" value="28566000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -699,14 +703,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BrickBreaker/net/GameServer.java" />
     <entry file="file://$PROJECT_DIR$/src/BrickBreaker/net/GameClient.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/MapGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="97" lean-forward="true" selection-start-line="32" selection-start-column="97" selection-end-line="32" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -715,20 +711,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="147" column="49" lean-forward="false" selection-start-line="147" selection-start-column="49" selection-end-line="147" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BrickBreaker_Network/GameServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="546">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -737,11 +723,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BrickBreaker_Network/GameClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state relative-caret-position="304">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/Gameplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="186" column="25" lean-forward="false" selection-start-line="186" selection-start-column="25" selection-end-line="186" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/BrickBreaker/MapGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
