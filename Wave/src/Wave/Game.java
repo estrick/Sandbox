@@ -2,11 +2,13 @@ package Wave;
 
 import Input.KeyInput;
 import Objects.BasicEnemy;
+import Objects.HUD;
 import Objects.ID;
 import Objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
 
@@ -14,15 +16,21 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
+    private Random r;
     private Handler handler;
+    private HUD hud;
 
     public Game() {
         setFocusable(true); // Focused on game on start-up
         handler = new Handler();
+        r = new Random();
+        hud = new HUD();
         new Window(WIDTH, HEIGHT, "Wave", this);
 
         handler.addGameObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player));
-        handler.addGameObject(new BasicEnemy(100, 100, ID.BasicEnemy));
+        for(int i = 0; i < 20; i++) {
+            handler.addGameObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+        }
         this.addKeyListener(new KeyInput(handler));
     }
 
@@ -33,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public synchronized void stop() {
-        try{
+        try {
             thread.join(); // Kill the thread
             running = false;
         } catch (Exception e) {
@@ -43,8 +51,9 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
+        this.requestFocus(); // Auto focused for keyboard input
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        final double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -72,6 +81,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        hud.tick();
     }
 
     private void render() {
@@ -86,9 +96,19 @@ public class Game extends Canvas implements Runnable {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         handler.render(g);
+        hud.render(g); // HUD after handler so that it is top layer
 
         g.dispose();
         bs.show();
+    }
+
+    public static int clamp(int var, int min, int max) {
+        if(var >= max)
+            return var = max;
+        else if(var <= min)
+            return var = min;
+        else
+            return var;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package Objects;
 
+import Wave.Game;
+
 import java.awt.*;
 
 public class Player extends GameObject {
@@ -12,6 +14,8 @@ public class Player extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+        x = Game.clamp(x, 3, Game.WIDTH-40);
+        y = Game.clamp(y, 3, Game.HEIGHT-64);
     }
 
     @Override
@@ -19,4 +23,10 @@ public class Player extends GameObject {
         g.setColor(Color.WHITE);
         g.fillRect(x, y, 32, 32);
     }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
+    }
+
 }

@@ -18,6 +18,7 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         movePlayer(5, key);
+        if (key == KeyEvent.VK_ESCAPE) System.exit(1); // Exit game on ESC
     }
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
